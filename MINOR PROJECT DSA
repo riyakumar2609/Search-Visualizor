@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void linearSearch(vector<int> arr, int target) {
+ cout << "Linear Search Steps:\n";
+ for (int i = 0; i < arr.size(); i++) {
+ cout << "Checking index " << i << ": " << arr[i] << endl;
+ if (arr[i] == target) {
+ cout << "Found at index " << i << endl;
+ return;
+ }
+ }
+ cout << "Element not found\n";
+}
+void binarySearch(vector<int> arr, int target) {
+ cout << "Binary Search Steps:\n";
+ int low = 0, high = arr.size() - 1;
+ while (low <= high) {
+ int mid = (low + high) / 2;
+ cout << "Checking middle index " << mid << ": " << arr[mid] << endl;
+ if (arr[mid] == target) {
+ cout << "Found at index " << mid << endl;
+ return;
+ } else if (arr[mid] < target) {
+ low = mid + 1;
+ } else {
+ high = mid - 1;
+ }
+ }
+ cout << "Element not found\n";
+}
+int main() {
+ vector<int> arr = {10, 20, 30, 40, 50};
+ int choice, target;
+ cout << "Enter element to search: ";
+ cin >> target;
+ cout << "Choose search type:\n1. Linear Search\n2. Binary Search\n";
+ cin >> choice;
+ if (choice == 1)
+ linearSearch(arr, target);
+ else
+ binarySearch(arr, target);
+ return 0;
+}
